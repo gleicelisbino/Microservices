@@ -1,7 +1,21 @@
 # Microservices 
 ### Talend Spring Boot and React JS
 
-### Features
+#### SETUP Docker SQL
+
+```bash
+sudo docker pull mcr.microsoft.com/mssql/server:2019-latest
+
+sudo docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=Madeof1" \
+   -p 1433:1433 --name sql1 --hostname sql1 \
+   -d mcr.microsoft.com/mssql/server:2019-latest
+
+sudo docker exec -it sql1 "bash"
+
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "Madeof1"
+```
+
+#### Features
 *Backend*
 - [ X ] Visualização / Inserção / remoção / atualização de clientes.
 - [ X ] Visualização de compras.
@@ -13,15 +27,15 @@
 
 - [ X ]Todos os formulários para cada rota dessas.
 
-### 🎲 Run Spring Boot
+#### 🎲 Run Spring Boot
 ```bash
 $ mvn spring-boot:run
 ```
-### 🎲 Run React
+#### 🎲 Run React
 ```bash
 $ yarn dev
 ```
-### 🎲 Visualização / Inserção / remoção / atualização de clientes.
+#### 🎲 Visualização / Inserção / remoção / atualização de clientes.
 ```bash
 POST: http://localhost:8080/api/Customers/AAAAA
 {
@@ -57,7 +71,7 @@ GET: http://localhost:8080/api/Customers/
 DELETE: http://localhost:8080/api/Customers/AAAAA
 ```
 
-### 🎲 Visualização de compras.
+#### 🎲 Visualização de compras.
 ```bash
 ## Visualização das compras
 GET http://localhost:8080/api/OrderDetails/
@@ -67,7 +81,7 @@ GET http://localhost:8080/api/Orders/
 
 ```
 
-### 🎲 Inserção de uma compra com vários produtos.
+#### 🎲 Inserção de uma compra com vários produtos.
 ```bash
 ## Visualização das compras
 POST http://localhost:8080/api/Products/
@@ -92,7 +106,7 @@ POST http://localhost:8080/api/Products/
 ```
 
 
-###  Crie algum gatilho que deva ser executado ao realizar a inserção do item 3.
+####  Crie algum gatilho que deva ser executado ao realizar a inserção do item 3.
 ```bash
 CREATE TRIGGER discount
 ON [Order Details]
@@ -112,7 +126,7 @@ GO
 
 ```
 
-### Crie um procedimento armazenado para retornar algum relatório a ser exibido.
+#### Crie um procedimento armazenado para retornar algum relatório a ser exibido.
 ```bash
 GET: http://localhost:8080/api/findWithCountryName?Find=10248
 
